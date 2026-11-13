@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>宝亮 · 项目作品集 2021–2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    /* 宣纸暖白 · 墨色 · 赭石 */
+    --paper:#faf7f0;
+    --paper-deep:#f3efe6;
+    --ink:#2f2b26;
+    --ink-soft:#6e6355;
+    --ink-faint:#7d7159;
+    --accent:#8a6a45;
+    --accent-deep:#6e5233;
+    --hairline:#e3dccd;
+    --dark:#211d18;
+    --dark-ink:#e8e2d5;
+    /* 黄金比例间距阶梯（φ近似） */
+    --s1:8px;  --s2:13px; --s3:21px; --s4:34px;
+    --s5:55px; --s6:89px; --s7:144px;
+    --content-max:1080px;
+    --text-measure:32em;   /* 中文行长护栏 */
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:"Noto Serif SC","Songti SC","STSong","SimSun",serif;
+    font-size:17px;
+    line-height:1.8;
+    letter-spacing:0;
+    -webkit-font-smoothing:antialiased;
+  }
+  ::selection{background:var(--accent);color:#fff;}
+
+  /* ── 61.8% 黄金竖线：贯穿全页的结构线 ── */
+  .phi-line{
+    position:fixed;top:0;bottom:0;left:61.8%;
+    width:1px;background:var(--hairline);
+    pointer-events:none;z-index:0;
+  }
+  @media (max-width:900px){.phi-line{display:none;}}
+
+  .wrap{position:relative;z-index:1;max-width:var(--content-max);margin:0 auto;padding:0 var(--s5);}
+
+  /* ── 封面 ── */
+  .cover{
+    min-height:92vh;
+    display:grid;
+    grid-template-columns:1.618fr 1fr;
+    gap:var(--s6);
+    align-items:end;
+    padding-top:var(--s7);
+    padding-bottom:var(--s6);
+  }
+  .cover-kicker{
+    font-size:13px;color:var(--ink-soft);
+    letter-spacing:.35em;
+    margin-bottom:var(--s4);
+  }
+  .cover h1{
+    font-size:clamp(44px,7vw,88px);
+    font-weight:900;
+    line-height:1.25;
+    letter-spacing:.02em;
+  }
+  .cover h1 .thin{font-weight:300;display:block;font-size:.42em;color:var(--ink-soft);margin-top:var(--s2);}
+  .cover-claim{
+    margin-top:var(--s5);
+    max-width:var(--text-measure);
+    color:var(--ink-soft);
+    font-size:18px;
+  }
+  .cover-side{
+    padding-bottom:var(--s2);
+    border-left:1px solid var(--hairline);
+    padding-left:var(--s4);
+  }
+  .cover-meta{font-size:13px;color:var(--ink-faint);line-height:2.1;font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;}
+  .cover-meta b{color:var(--accent-deep);font-weight:500;}
+
+  /* ── 时间线 ── */
+  .timeline{
+    display:flex;gap:var(--s3);
+    padding:var(--s4) 0 var(--s6);
+    border-top:1px solid var(--hairline);
+    margin-top:var(--s6);
+    overflow-x:auto;
+  }
+  .tl-item{flex:1;min-width:110px;}
+  .tl-item .y{font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;font-size:13px;color:var(--accent-deep);}
+  .tl-item .t{font-size:14px;margin-top:var(--s1);line-height:1.5;}
+  .tl-item::before{
+    content:"";display:block;width:7px;height:7px;border-radius:50%;
+    background:var(--accent);margin-bottom:var(--s2);
+  }
+
+  /* ── 章节头 ── */
+  section{padding:var(--s6) 0;}
+  .sec-head{
+    display:grid;
+    grid-template-columns:1.618fr 1fr;
+    gap:var(--s5);
+    align-items:baseline;
+    border-top:1px solid var(--ink);
+    padding-top:var(--s3);
+    margin-bottom:var(--s5);
+  }
+  .sec-no{
+    font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+    font-size:13px;color:var(--accent-deep);letter-spacing:.2em;
+  }
+  .sec-head h2{
+    font-size:clamp(26px,3.4vw,40px);
+    font-weight:700;line-height:1.4;
+  }
+  .sec-head .aside{font-size:13px;color:var(--ink-faint);text-align:right;line-height:1.9;}
+  @media (max-width:900px){
+    .sec-head{grid-template-columns:1fr;}
+    .sec-head .aside{text-align:left;}
+  }
+
+  /* ── 能力地图 ── */
+  .map-grid{
+    display:grid;
+    grid-template-columns:1fr 1.618fr;
+    gap:var(--s6);
+    margin-bottom:var(--s6);
+  }
+  @media (max-width:900px){.map-grid{grid-template-columns:1fr;gap:var(--s5);}}
+  .map-groups{display:flex;flex-direction:column;}
+  .map-group{
+    padding:var(--s3) 0;
+    border-bottom:1px solid var(--hairline);
+  }
+  .map-group:first-child{padding-top:0;}
+  .map-group h3{font-size:16px;font-weight:600;margin-bottom:var(--s1);}
+  .map-group p{font-size:14px;color:var(--ink-soft);}
+  .metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--s4) var(--s3);}
+  @media (max-width:600px){.metrics{grid-template-columns:repeat(2,1fr);}}
+  .metric b{
+    display:block;
+    font-size:clamp(28px,3.6vw,44px);
+    font-weight:900;color:var(--accent-deep);
+    line-height:1.2;
+  }
+  .metric span{font-size:13px;color:var(--ink-soft);display:block;margin-top:var(--s1);line-height:1.6;}
+
+  /* ── 项目卡 ── */
+  .project{
+    border-top:1px solid var(--hairline);
+    padding:var(--s5) 0;
+  }
+  .p-head{
+    display:flex;
+    align-items:baseline;
+    gap:var(--s3);
+    margin-bottom:var(--s4);
+  }
+  .p-no{
+    font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+    font-size:14px;color:var(--ink-faint);
+  }
+  .p-head h3{font-size:clamp(21px,2.6vw,28px);font-weight:700;}
+  .p-years{
+    margin-left:auto;font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+    font-size:13px;color:var(--accent-deep);white-space:nowrap;
+  }
+  .p-summary{
+    max-width:var(--text-measure);
+    font-size:17px;
+    margin-bottom:var(--s4);
+  }
+  /* 头牌项目：加大 */
+  .project.featured .p-summary{font-size:19px;}
+  .p-body{
+    display:grid;
+    grid-template-columns:1fr 1.618fr;
+    gap:var(--s5);
+  }
+  @media (max-width:900px){.p-body{grid-template-columns:1fr;gap:var(--s4);}}
+  .p-stats{display:flex;flex-direction:column;gap:var(--s3);}
+  .p-stats .stat b{
+    display:block;font-size:26px;font-weight:900;color:var(--accent-deep);line-height:1.3;
+  }
+  .p-stats .stat span{font-size:13px;color:var(--ink-soft);}
+  .star{display:flex;flex-direction:column;gap:var(--s3);}
+  .star-row{display:grid;grid-template-columns:64px 1fr;gap:var(--s2);}
+  .star-row dt{
+    font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+    font-size:12px;color:var(--ink-faint);padding-top:3px;letter-spacing:.1em;
+  }
+  .star-row dd{font-size:15px;color:var(--ink);max-width:var(--text-measure);}
+  .star-row dd.muted{color:var(--ink-soft);font-size:14px;}
+  /* 标注芯片（签名元素） */
+  .tag{
+    display:inline-block;
+    font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+    font-size:11px;
+    border:1px solid var(--hairline);
+    border-radius:2px;
+    padding:0 5px;
+    color:var(--accent-deep);
+    vertical-align:1px;
+    margin-left:3px;
+    background:var(--paper-deep);
+  }
+
+  /* ── 深色方法论插页 ── */
+  .method{
+    background:var(--dark);
+    color:var(--dark-ink);
+    padding:var(--s6) 0;
+  }
+  .method .wrap{padding-top:0;padding-bottom:0;}
+  .method .sec-head{border-top-color:var(--dark-ink);}
+  .method .sec-no{color:#c9a87c;}
+  .method .sec-head .aside{color:#8b8272;}
+  .method-list{display:grid;grid-template-columns:1fr 1.618fr;gap:var(--s5) var(--s6);}
+  @media (max-width:900px){.method-list{grid-template-columns:1fr;}}
+  .m-item{padding:var(--s3) 0;border-bottom:1px solid #3a342b;}
+  .m-item h3{font-size:17px;font-weight:600;margin-bottom:var(--s1);}
+  .m-item h3 em{font-style:normal;color:#c9a87c;margin-right:var(--s2);font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;font-size:13px;}
+  .m-item p{font-size:14px;color:#a89e8c;}
+
+  /* ── 附录 ── */
+  .appendix p{font-size:14px;color:var(--ink-soft);max-width:var(--text-measure);}
+  .appendix .rows{margin-top:var(--s4);border-top:1px solid var(--hairline);}
+  .app-row{
+    display:grid;grid-template-columns:38px 1fr 1.618fr;
+    gap:var(--s3);padding:var(--s2) 0;border-bottom:1px solid var(--hairline);
+    font-size:14px;
+  }
+  .app-row .n{font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;color:var(--ink-faint);font-size:12px;padding-top:2px;}
+  .app-row .p{font-weight:600;}
+  .app-row .e{color:var(--ink-soft);}
+  @media (max-width:700px){.app-row{grid-template-columns:30px 1fr;}.app-row .e{grid-column:2;}}
+
+  footer{
+    padding:var(--s5) 0 var(--s6);
+    border-top:1px solid var(--hairline);
+    display:flex;justify-content:space-between;gap:var(--s3);flex-wrap:wrap;
+    font-size:13px;color:var(--ink-faint);
+  }
+  footer .name{color:var(--ink-soft);font-weight:600;}
+
+  /* ── 入场动效（reduced-motion 友好） ── */
+  .reveal{opacity:0;transform:translateY(18px);transition:opacity .7s ease,transform .7s ease;}
+  .reveal.in{opacity:1;transform:none;}
+  @media (prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto;}
+    .reveal{opacity:1;transform:none;transition:none;}
+  }
+
+  :focus-visible{outline:2px solid var(--accent-deep);outline-offset:3px;}
+  @media print {
+    @page { margin: 0; }
+    body { 
+      padding-top: 0 !important; 
+      height: auto !important; 
+    }
+    .wrap { padding: 20px !important; } 
+    .reveal { opacity: 1 !important; transform: none !important; } 
+  }
+</style>
+</head>
+<body>
+<div class="phi-line" aria-hidden="true"></div>
+
+<div class="wrap">
+
+  <!-- 封面 -->
+  <header id="cover" class="cover">
+    <div>
+      <p class="cover-kicker">项 目 作 品 集 · PORTFOLIO</p>
+      <h1>把不确定的事，<wbr>做成可验证的体系。
+        <span class="thin">宝亮 · 质量与标准化条线（2021–2026）</span>
+      </h1>
+      <p class="cover-claim">七个真实项目：实验室建设、计量体系、国际标准对接、出口合规、可靠性改善、行业研究。全部结论按【V 文件实证】【O 口述】【I 待确认】三级标注，结果如实呈现，不拔高、不修饰。</p>
+    </div>
+    <div class="cover-side">
+      <p class="cover-meta">
+        项目总数 <b>7</b><br>
+        覆盖年份 <b>2021 → 2026</b><br>
+        方法框架 <b>STAR-R</b><br>
+        证据标注 <b>V / O / I 三级</b><br>
+        版本属性 <b>对外版 · 内容经核查</b>
+      </p>
+    </div>
+  </header>
+
+  <!-- 时间线 -->
+  <nav class="timeline" aria-label="项目时间线">
+    <div class="tl-item"><p class="y">2021</p><p class="t">计量体系<br>从0搭建</p></div>
+    <div class="tl-item"><p class="y">2023</p><p class="t">光伏行业<br>内参报告</p></div>
+    <div class="tl-item"><p class="y">2023</p><p class="t">实验室建设<br>启动</p></div>
+    <div class="tl-item"><p class="y">2025</p><p class="t">电阻带寿命<br>课题</p></div>
+    <div class="tl-item"><p class="y">2026</p><p class="t">数据资产<br>研究</p></div>
+    <div class="tl-item"><p class="y">2026</p><p class="t">IEC 标准对接<br>6天闭环</p></div>
+    <div class="tl-item"><p class="y">2026</p><p class="t">CE 认证<br>合规储备</p></div>
+  </nav>
+
+  <!-- 能力地图 -->
+  <section id="map">
+    <div class="sec-head reveal">
+      <div><p class="sec-no">01 / 能力地图</p><h2>四个方向，一条主线</h2></div>
+      <p class="aside">主线：用标准、证据与体系，<br>把工程问题变成可交付的组织能力。</p>
+    </div>
+    <div class="map-grid">
+      <div class="map-groups reveal">
+        <div class="map-group"><h3>体系搭建</h3><p>实验室从0到1 · 计量体系五年运营 · 制度与台账闭环</p></div>
+        <div class="map-group"><h3>标准合规</h3><p>IEC 国际标准对接 · CE 认证机构筛选与比选</p></div>
+        <div class="map-group"><h3>可靠性改善</h3><p>电阻带失效分析 · 外部协同 · 假说驱动验证</p></div>
+        <div class="map-group"><h3>行业研究</h3><p>光伏储能内参 · 数据资产化前瞻梳理</p></div>
+      </div>
+      <div class="metrics reveal">
+        <div class="metric"><b>155.6万</b><span>实验室设备全部落地（国家项目资金）</span></div>
+        <div class="metric"><b>-54%</b><span>计量外委费用五年降幅（范围不缩水）</span></div>
+        <div class="metric"><b>6天</b><span>IEC 专家参与入口打通闭环</span></div>
+        <div class="metric"><b>25,660元</b><span>MD+LVD 培训合同签约价（59,360 元为报价方案未签约；对比口述报价 150 万）</span></div>
+        <div class="metric"><b>28项</b><span>实验室标准体系梳理</span></div>
+        <div class="metric"><b>16份</b><span>数据资产政策/标准原文研读（归档原始文件共 18 份）</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 项目 01 头牌：实验室建设 -->
+  <section id="p1">
+    <div class="sec-head reveal">
+      <div><p class="sec-no">02 / 项目详情</p><h2>七个项目</h2></div>
+      <p class="aside">排序按强度；<br>结果区一律如实呈现。</p>
+    </div>
+    <article class="project featured reveal">
+      <div class="p-head"><span class="p-no">01</span><h3>固体电蓄热锅炉产品实验室建设</h3><span class="p-years">2023–2025</span></div>
+      <p class="p-summary">依托国家项目扶持资金，作为<b>项目总负责</b>，从 0 到 1 搭建产品实验室——独立完成 28 项标准体系梳理、设备—产品功能映射、技术需求文档与技术评标，推动 155.6 万元检测设备落地并完成安装、调试、培训。</p>
+      <div class="p-body">
+        <div class="p-stats">
+          <div class="stat"><b>155.6万</b><span>设备采购金额（国家项目扶持资金）</span></div>
+          <div class="stat"><b>省约19万</b><span>较预算节省（多家评标＋国产替代）</span></div>
+          <div class="stat"><b>28项</b><span>标准体系梳理完成</span></div>
+        </div>
+        <dl class="star">
+          <div class="star-row"><dt>S 情境</dt><dd>公司为联合体成员参与国家项目《工业锅炉煤炭高效清洁利用及煤炭替代技术装备项目》（牵头：无锡华光环保能源集团，成员含中科院工程热物理研究所、西安交大、哈工大等 10 家）。借项目资金契机成立自有实验室，约 1.3 万㎡厂房。</dd></div>
+          <div class="star-row"><dt>A 行动</dt><dd>以标准反推设备能力需求：28 项标准梳理 → 每台设备对应明确的产品功能层 → 3–5 家供应商技术评标＋国产替代降本 → 与技术副总定稿需求，独立完成技术文档与评标；借设备厂家建标成功经验加速建标准备。</dd></div>
+          <div class="star-row"><dt>R 结果</dt><dd>已达成：设备全部到货、安装、调试、培训完毕；建标申请材料准备完毕；实验室达「只差制度落地、人员定岗即可攒数据」的就绪状态。<b>未达成（如实）</b>：受实验室定位摇摆影响，建标申请未提交（差最后一步），CNAS 申请未启动<span class="tag">O 口述</span>。</dd></div>
+          <div class="star-row"><dt>R 反思</dt><dd class="muted">「面对定位摇摆，顾虑太多、没抓住主线。」——沉淀：标准体系先行、设备—功能映射、多家技术评标、借力外部经验。</dd></div>
+        </dl>
+      </div>
+    </article>
+
+    <!-- 02 计量体系 -->
+    <article class="project reveal">
+      <div class="p-head"><span class="p-no">02</span><h3>企业计量管理体系从0到1搭建与运营</h3><span class="p-years">2021–2026</span></div>
+      <p class="p-summary">从0建立可持续运行的计量管理体系：统一台账、周期校准、第三方送检、自校准四模块，配套《计量器具管理办法》，<b>连续运营五年以上</b>，随时可应对外部审核。</p>
+      <div class="p-body">
+        <div class="p-stats">
+          <div class="stat"><b>-54%</b><span>外委费用：2000 元 → 911.6 元（范围不缩水）</span></div>
+          <div class="stat"><b>0 问题</b><span>历次 ISO 9000 外审未提计量问题（【O】口述印象）</span></div>
+          <div class="stat"><b>20余台/年</b><span>自校准覆盖生产器具</span></div>
+        </div>
+        <dl class="star">
+          <div class="star-row"><dt>S 情境</dt><dd>2021 年接手全公司计量器具管理——器具分散多部门、无统一台账、无比价留痕、无自校准能力、无成文制度，是一条「没有成体系的线」。</dd></div>
+          <div class="star-row"><dt>A 行动</dt><dd>制度先行起草管理办法；建全生命周期台账；年度比价 ≥3 家形成常态；从零搭建自校准能力与处置规则（合格/降级/维修复验/报废）。</dd></div>
+          <div class="star-row"><dt>R 结果</dt><dd>台账与制度文件齐备；2022 年首年即跑通「不合格→返厂维修→二次校准合格」全流程；2024 年服务商切换有完整比价实证支撑。</dd></div>
+          <div class="star-row"><dt>R 反思</dt><dd class="muted">技术能力决定体系「能不能跑」，成果显性化决定「被不被看见」——对后台型工作，两者必须同步。</dd></div>
+        </dl>
+      </div>
+    </article>
+
+    <!-- 03 IEC对接 -->
+    <article class="project reveal">
+      <div class="p-head"><span class="p-no">03</span><h3>IEC 国际标准对接</h3><span class="p-years">2026</span></div>
+      <p class="p-summary">从零打通国际标准参与的官方路径，<b>6 天完成闭环</b>：从公开信息平台到获荐行业归口专家联系入口，每一步留有实证。</p>
+      <div class="p-body">
+        <div class="p-stats">
+          <div class="stat"><b>6天</b><span>从公开信息到专家入口的闭环</span></div>
+          <div class="stat"><b>3类</b><span>过程实证：通话记录、微信、邮件截图</span></div>
+        </div>
+        <dl class="star">
+          <div class="star-row"><dt>A 行动</dt><dd>全国标准信息公共服务平台公示电话 → 官方指路 → 获荐中电联；同日多号码依次致电（通话记录截图佐证）；次日与行业人士建立微信联系；后续获中电联发电标准处邮件回复。</dd></div>
+          <div class="star-row"><dt>R 结果</dt><dd>专家参与入口已打通。<b>长尾如实记录</b>：征集函登记截止已过，申请表未填报（等专家名单确定），项目挂起、9 月回访维持入口<span class="tag">V 文件</span><span class="tag">O 口述</span>。</dd></div>
+          <div class="star-row"><dt>R 反思</dt><dd class="muted">「官方枢纽路径」：公示平台 → 主管机构 → 行业归口，逐级推进、逐步留痕，路径可复用。</dd></div>
+        </dl>
+      </div>
+    </article>
+
+    <!-- 04 CE认证 -->
+    <article class="project reveal">
+      <div class="p-head"><span class="p-no">04</span><h3>CE 认证合规（出口前期储备）</h3><span class="p-years">2026</span></div>
+      <p class="p-summary">3 月从0接手 CE 认证：洽谈 <b>20 余家认证机构</b>完成避坑筛选（识别问题 NB 证书与不知情分包两类风险），锁定 TUV 南德完成报价比选（59,360 元报价方案 vs 口述报价 150 万【O】），以 <b>25,660 元</b> MD+LVD 培训合同交付六部门统一培训。</p>
+      <div class="p-body">
+        <div class="p-stats">
+          <div class="stat"><b>20余家</b><span>认证机构洽谈筛选</span></div>
+          <div class="stat"><b>25,660元</b><span>培训合同签约价（对比口述报价 150 万）</span></div>
+          <div class="stat"><b>6部门</b><span>统一培训交付（签到表实证）</span></div>
+        </div>
+        <dl class="star">
+          <div class="star-row"><dt>A 行动</dt><dd>机构地毯式接触与风险识别；MD+LVD 技术培训合同（EN 12100 / EN 13849-1 / EN 60204-1）；2026 年 8 月 19–20 日现场培训 2 天。</dd></div>
+          <div class="star-row"><dt>R 结果</dt><dd>六部门统一培训交付完成。<b>定位如实</b>：认证主体工作（风险评估报告、CE 证书、PED 承压部分）受设备非标定制约束，待出口项目落地后触发。</dd></div>
+          <div class="star-row"><dt>R 反思</dt><dd class="muted">认证的前期储备价值在于「避坑」与「标准口径建立」——把认证从被动应对变成主动布局。</dd></div>
+        </dl>
+      </div>
+    </article>
+
+    <!-- 05 电阻带 -->
+    <article class="project reveal">
+      <div class="p-head"><span class="p-no">05</span><h3>电阻带工作寿命改善</h3><span class="p-years">2025–2026</span></div>
+      <p class="p-summary">自发质量课题：直面「承诺 5 年质保 <b>vs</b> 每年检修换一批」的核心矛盾——失效实证、外部协同、小步验证三条线并行推进。</p>
+      <div class="p-body">
+        <div class="p-stats">
+          <div class="stat"><b>2轮</b><span>与供应商技术部门沟通即获失效实证＋工艺建议</span></div>
+          <div class="stat"><b>2案例</b><span>撬装试验炉憋热事件＋杨津庄运行约 7 年取样</span></div>
+        </div>
+        <dl class="star">
+          <div class="star-row"><dt>S 情境</dt><dd>集装箱式蓄热设备结构紧凑，电阻带更换作业难度大；壳牌二期投产窗口约 10 个月，高温区已现明显腐蚀。</dd></div>
+          <div class="star-row"><dt>A 行动</dt><dd>以「邀请讨论」而非「单向求证」定位与供应商技术部门的关系；对「手汗 Cl 气氛」等具体疑问做低成本对照实验快速证伪；26-10-21 后果推演文件完成后分层触达（技术/售后/决策层）；26-10-15 技术报告记录「折弯处/焊缝是膜层最薄弱点」预判，与实验验证结果吻合。</dd></div>
+          <div class="star-row"><dt>R 结果</dt><dd>「折弯处/焊缝是膜层最薄弱点」的预判与后续实验验证吻合，形成<b>预判→实验验证的认知闭环</b>。<b>未落地如实标注</b>：1050℃×10h 预氧化工艺在公司条件下不可行，发外热处理因成本与商业顾虑最终未执行。</dd></div>
+          <div class="star-row"><dt>R 反思</dt><dd class="muted">排除一项假说即收敛一分——不让未经检验的猜测进入决策；预判性风险文件把「万一」变成有准备的预案输入。</dd></div>
+        </dl>
+      </div>
+    </article>
+
+    <!-- 06 数据资产 -->
+    <article class="project reveal">
+      <div class="p-head"><span class="p-no">06</span><h3>设备制造商数据资产化研究</h3><span class="p-years">2026</span></div>
+      <p class="p-summary">无立项、无积累，自发厘清设备制造商数据资产化的底层逻辑——为公司决策提供一份<b>有证据分级、可验证、可执行</b>的认知基础。</p>
+      <div class="p-body">
+        <div class="p-stats">
+          <div class="stat"><b>16份</b><span>政策/标准原文研读（归档原始文件共 18 份）</span></div>
+          <div class="stat"><b>1天</b><span>V1.0→V1.1 版本迭代周期</span></div>
+        </div>
+        <dl class="star">
+          <div class="star-row"><dt>S 情境</dt><dd>财政部「入表」新规施行、数据产权「三权分置」确立、系列国标相继发布——公司此前在数据资产方向没有任何工作基础。</dd></div>
+          <div class="star-row"><dt>A 行动</dt><dd>收集研读政策标准原文；结合设备制造商定位分析含义；建立「证据分级＋外部验证清单」机制，把不确定议题转化为「哪些可信、哪些待验证、如何验证」的透明结构。</dd></div>
+          <div class="star-row"><dt>R 结果</dt><dd>成果进入公司讨论（而非停留个人笔记）；公司已开始知识产权认证。</dd></div>
+          <div class="star-row"><dt>R 反思</dt><dd class="muted">核心价值不在结论本身，而在机制；最大卡点判断：「工业的生产关系基本和数据绝缘」。</dd></div>
+        </dl>
+      </div>
+    </article>
+
+    <!-- 07 光伏内参 -->
+    <article class="project reveal">
+      <div class="p-head"><span class="p-no">07</span><h3>光伏/储能行业观察与公司发展建议</h3><span class="p-years">2023</span></div>
+      <p class="p-summary">主动撰写的内部参考报告：约两周调研、六个公开出处可溯源，围绕经济性测算提出三条建议。<b>未获采纳，如实呈现</b>。</p>
+      <div class="p-body">
+        <div class="p-stats">
+          <div class="stat"><b>2周</b><span>调研成稿周期</span></div>
+          <div class="stat"><b>3条</b><span>建议（报价方式/接口预留/新能源方向）</span></div>
+          <div class="stat"><b>0.63 vs 1.347</b><span>储能 LCOE 与珠三角峰谷价差（元/kWh）</span></div>
+        </div>
+        <dl class="star">
+          <div class="star-row"><dt>S 情境</dt><dd>2023 年上半年非化石能源发电装机占比首次超过 50%；公司项目储备少、需寻找新方向。</dd></div>
+          <div class="star-row"><dt>A 行动</dt><dd>公开报道调研（引用出处逐一留链）＋ AI 辅助查询；围绕储能经济性开展测算与对比；构思、框架与推进独立完成。</dd></div>
+          <div class="star-row"><dt>R 结果</dt><dd>报告完整留存；2026 年归档复盘时补齐三条建议原文与口径标注，锂电储能占比 94% 口径并存注明（原始报告口径与《中国可再生能源发展报告 2022》口径）。</dd></div>
+          <div class="star-row"><dt>R 反思</dt><dd class="muted">内参的采纳依赖组织时机；判断要靠测算支撑、出处可溯源——这套纪律后来成为所有报告的基线。</dd></div>
+        </dl>
+      </div>
+    </article>
+  </section>
+</div>
+
+<!-- 方法论（深色插页） -->
+<div class="method">
+  <div class="wrap">
+    <section id="method">
+      <div class="sec-head reveal">
+        <div><p class="sec-no">03 / 方法论沉淀</p><h2>跨项目可复用的五条方法</h2></div>
+        <p class="aside">不是口号——每条都来自<br>至少一个真实项目的验证。</p>
+      </div>
+      <div class="method-list">
+        <div class="m-item reveal"><h3><em>01</em>标准体系先行</h3><p>以标准反推设备能力需求与合规口径，选型有据、验收有依。</p></div>
+        <div class="m-item reveal"><h3><em>02</em>证据置信度分级</h3><p>【V】文件实证 /【O】口述 /【I】待确认——让每个结论可检验，也为后补证据预留接口。</p></div>
+        <div class="m-item reveal"><h3><em>03</em>官方枢纽路径</h3><p>公示平台 → 主管机构 → 行业归口：逐级推进、逐步留痕，对接路径可复用。</p></div>
+        <div class="m-item reveal"><h3><em>04</em>假说驱动小步验证</h3><p>用低成本对照实验快速证伪——排除一项即收敛一分，不让猜测进入决策。</p></div>
+        <div class="m-item reveal"><h3><em>05</em>显性化交付</h3><p>技术能力决定「能不能跑」，成果显性化决定「被不被看见」——体系型工作两者必须同步。</p></div>
+      </div>
+    </section>
+  </div>
+</div>
+
+<div class="wrap">
+  <!-- 附录 -->
+  <section id="appendix" class="appendix">
+    <div class="sec-head reveal">
+      <div><p class="sec-no">04 / 附录</p><h2>证据来源说明</h2></div>
+      <p class="aside">全文事实均经逐条核查；<br>口径差异处已在稿内注明。</p>
+    </div>
+    <p class="reveal">本卷各项目事实均来自文件实证与当事人交叉核验，标注体系贯穿全稿；原始成稿、证据附件与归档记录留存备查。各项目主要证据类型：</p>
+    <div class="rows reveal">
+      <div class="app-row"><span class="n">01</span><span class="p">实验室建设</span><span class="e">采购与评标文件、建标参考资料、设备清单</span></div>
+      <div class="app-row"><span class="n">02</span><span class="p">计量体系</span><span class="e">管理办法、台账、完工结算单、报价单（25+9 份文件）</span></div>
+      <div class="app-row"><span class="n">03</span><span class="p">IEC 对接</span><span class="e">通话记录截图、微信聊天记录、邮件截图</span></div>
+      <div class="app-row"><span class="n">04</span><span class="p">CE 认证</span><span class="e">报价单、技术服务合同、会议签到表×2</span></div>
+      <div class="app-row"><span class="n">05</span><span class="p">电阻带改善</span><span class="e">失效取样检测、技术报告（26-10-15）、后果推演文件（26-10-21）、对照实验记录</span></div>
+      <div class="app-row"><span class="n">06</span><span class="p">数据资产</span><span class="e">政策/标准原文研读 16 份（归档原始文件 18 份）、研究报告多版本</span></div>
+      <div class="app-row"><span class="n">07</span><span class="p">光伏内参</span><span class="e">原始报告全文、六个公开引用出处</span></div>
+    </div>
+  </section>
+
+  <footer>
+    <span class="name">宝亮 · 项目作品集</span>
+    <span>联系方式｜（待填）</span>
+    <span>STAR-R 框架 · V/O/I 三级证据标注 · 2026</span>
+  </footer>
+</div>
+
+<script>
+  (function(){
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    var els = document.querySelectorAll('.reveal');
+    if (!('IntersectionObserver' in window)) {
+      els.forEach(function(el){ el.classList.add('in'); });
+      return;
+    }
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+      });
+    }, {threshold:0.08});
+    els.forEach(function(el){ io.observe(el); });
+  })();
+</script>
+</body>
+</html>
